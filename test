@@ -1,55 +1,145 @@
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小澤的窩</title>
+    <style>
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('MyCustomFont.eot'); /* IE9 Compatibility Modes */
+            src: url('MyCustomFont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+                 url('MyCustomFont.woff2') format('woff2'), /* Super Modern Browsers */
+                 url('MyCustomFont.woff') format('woff'), /* Modern Browsers */
+                 url('MyCustomFont.ttf') format('truetype'); /* Safari, Android, iOS */
+            font-weight: normal;
+            font-style: normal;
+        }
 
-export default function Blog() {
-  const [page, setPage] = useState("home");
+        body {
+            font-family: 'MyCustomFont', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        #showcase {
+            min-height: 400px;
+            background: #333 url('bg.jpg') no-repeat center center/cover;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+        #showcase h1 {
+            margin-top: 100px;
+            font-size: 55px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 2px #000;
+        }
+        #showcase p {
+            font-size: 20px;
+            text-shadow: 2px 2px 2px #000;
+        }
+        #showcase img {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 100%;
+            height: auto;
+        }
+        #main {
+            padding: 20px;
+            background: #fff;
+        }
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #333;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <link rel="icon" href="logo.png" type="image/x-icon"/>
+            <div id="branding">
+                <h1>小澤的窩</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">首頁</a></li>
+                    <li><a href="about.html">關於我</a></li>
+                    <li><a href="contact.html">聯絡我</a></li>
+                    <li><a href="learning.html">學習區</a></li>
+                    <li><a href="webstie-history.html">更新紀錄</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-  const posts = [
-    { id: 1, title: "第一篇文章", content: "這是第一篇部落格的內容。" },
-    { id: 2, title: "第二篇文章", content: "這是第二篇部落格的內容。" },
-  ];
+    <section id="showcase">
+        <div class="container">
+            <h1>歡迎來到小澤的窩</h1>
+            <p>關於我的事情都在這裡！</p>
+        </div>
+    </section>
+    <section id="main">
+        <div class="container">
+        <div class="featured">
+            <h2>個人簡介</h2>
+            <p>本人目前高一，就讀實中科學班。除了理科外，也熱愛音樂（會些許鋼琴）。</p>
+        </div>
 
-  return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-3xl mx-auto">
-        <header className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">我的部落格</h1>
-          <nav className="space-x-4">
-            <Button variant="outline" onClick={() => setPage("home")}>主頁</Button>
-            {posts.map((post) => (
-              <Button
-                key={post.id}
-                variant="outline"
-                onClick={() => setPage(post.id)}
-              >
-                {post.title}
-              </Button>
-            ))}
-          </nav>
-        </header>
-
-        <main>
-          {page === "home" ? (
-            <Card className="mb-4">
-              <CardContent>
-                <p>歡迎來到我的部落格！請點選上方的文章連結查看內容。</p>
-              </CardContent>
-            </Card>
-          ) : (
-            posts
-              .filter((post) => post.id === page)
-              .map((post) => (
-                <Card key={post.id} className="mb-4">
-                  <CardContent>
-                    <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
-                    <p>{post.content}</p>
-                  </CardContent>
-                </Card>
-              ))
-          )}
-        </main>
-      </div>
-    </div>
-  );
-}
+        <div class="interests">
+            <h2>我的興趣</h2>
+            <ul>
+                <li>天文物理</li>
+                <li>音樂</li>
+                <li>羽球</li>
+            </ul>
+        </div>
+    </section>
+    <footer>
+        <p>小澤的窩 &copy; 2024</p>
+    </footer>
+</body>
+</html>
