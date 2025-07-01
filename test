@@ -1,0 +1,55 @@
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+export default function Blog() {
+  const [page, setPage] = useState("home");
+
+  const posts = [
+    { id: 1, title: "第一篇文章", content: "這是第一篇部落格的內容。" },
+    { id: 2, title: "第二篇文章", content: "這是第二篇部落格的內容。" },
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-3xl mx-auto">
+        <header className="mb-8">
+          <h1 className="text-4xl font-bold mb-2">我的部落格</h1>
+          <nav className="space-x-4">
+            <Button variant="outline" onClick={() => setPage("home")}>主頁</Button>
+            {posts.map((post) => (
+              <Button
+                key={post.id}
+                variant="outline"
+                onClick={() => setPage(post.id)}
+              >
+                {post.title}
+              </Button>
+            ))}
+          </nav>
+        </header>
+
+        <main>
+          {page === "home" ? (
+            <Card className="mb-4">
+              <CardContent>
+                <p>歡迎來到我的部落格！請點選上方的文章連結查看內容。</p>
+              </CardContent>
+            </Card>
+          ) : (
+            posts
+              .filter((post) => post.id === page)
+              .map((post) => (
+                <Card key={post.id} className="mb-4">
+                  <CardContent>
+                    <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
+                    <p>{post.content}</p>
+                  </CardContent>
+                </Card>
+              ))
+          )}
+        </main>
+      </div>
+    </div>
+  );
+}
